@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Relative Clauses — Side by Side Style</title>
+<style>
+  :root{
+    --navy:#1b3a6b;
+    --orange:#e8762c;
+    --lightblue:#dceefb;
+    --paleorange:#fdecdd;
+    --gray:#555;
+  }
+  body{
+    font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
+    background:#f4f2ec;
+    margin:0;
+    padding:30px;
+    color:#222;
+  }
+  .page{
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    border: 2px solid var(--navy);
+    padding: 0 0 30px 0;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.15);
+  }
+  .topbar{
+    background: var(--navy);
+    color: white;
+    padding: 14px 28px;
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+  .lesson-title{
+    text-align:center;
+    padding: 22px 20px 6px;
+  }
+  .lesson-title h1{
+    color: var(--orange);
+    font-size: 34px;
+    margin: 0;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .lesson-title p{
+    color: var(--navy);
+    font-style: italic;
+    margin: 4px 0 0;
+    font-size: 15px;
+  }
+
+  .grammar-box{
+    margin: 20px 30px;
+    border: 3px solid var(--orange);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .grammar-box .head{
+    background: var(--orange);
+    color: white;
+    font-weight: bold;
+    padding: 8px 16px;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+  }
+  .grammar-box .body{
+    padding: 16px 20px;
+    background: var(--paleorange);
+  }
+  .gram-row{
+    display:flex;
+    gap: 30px;
+    font-size: 16px;
+    margin: 6px 0;
+    align-items:baseline;
+  }
+  .gram-row .label{
+    width: 90px;
+    font-weight:bold;
+    color: var(--navy);
+  }
+  .pronoun{
+    color: var(--orange);
+    font-weight:bold;
+  }
+  .clause{
+    text-decoration: underline;
+    text-decoration-color: var(--navy);
+    text-decoration-thickness: 2px;
+  }
+
+  .section-num{
+    display:inline-block;
+    background: var(--navy);
+    color:white;
+    border-radius: 50%;
+    width: 30px;
+    height:30px;
+    text-align:center;
+    line-height:30px;
+    font-weight:bold;
+    margin-right: 10px;
+  }
+  .section-title{
+    font-size:18px;
+    font-weight:bold;
+    color: var(--navy);
+    margin: 28px 30px 10px;
+    border-bottom: 2px solid var(--lightblue);
+    padding-bottom: 6px;
+  }
+
+  /* Dialogue / speech bubble area */
+  .dialogue{
+    margin: 10px 30px 20px;
+    background: var(--lightblue);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .char-row{
+    display:flex;
+    align-items:flex-start;
+    margin: 14px 0;
+    gap: 12px;
+  }
+  .char-row.right{
+    flex-direction: row-reverse;
+  }
+  .avatar{
+    width: 46px;
+    height:46px;
+    border-radius:50%;
+    background: var(--navy);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+    flex-shrink:0;
+    font-size:14px;
+  }
+  .char-row.right .avatar{ background: var(--orange); }
+  .bubble{
+    background:white;
+    border:2px solid var(--navy);
+    border-radius: 14px;
+    padding: 10px 16px;
+    font-size: 15.5px;
+    max-width: 70%;
+    position: relative;
+  }
+  .char-row.right .bubble{
+    border-color: var(--orange);
+  }
+  .name{
+    font-size:11px;
+    font-weight:bold;
+    color: var(--gray);
+    margin-bottom:2px;
+  }
+
+  /* Practice / substitution drill */
+  .practice-grid{
+    margin: 10px 30px 20px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .item{
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px 14px;
+    background: #fafaf7;
+    font-size: 14.5px;
+  }
+  .item .num{
+    font-weight:bold;
+    color: var(--orange);
+    margin-right:6px;
+  }
+  .picture-cue{
+    display:inline-block;
+    background: var(--lightblue);
+    border: 1px dashed var(--navy);
+    border-radius: 6px;
+    padding: 2px 8px;
+    font-size: 12px;
+    color: var(--navy);
+    margin: 0 4px;
+  }
+  .blank{
+    border-bottom: 2px solid var(--navy);
+    display:inline-block;
+    min-width: 90px;
+  }
+
+  /* Free practice / interview box */
+  .free-practice{
+    margin: 10px 30px 10px;
+    background: #fff8ee;
+    border-left: 6px solid var(--orange);
+    padding: 16px 20px;
+    font-size: 15px;
+  }
+  .free-practice ul{ margin: 8px 0 0 18px; }
+  .free-practice li{ margin: 4px 0; }
+
+  .footer-note{
+    text-align:center;
+    color: var(--gray);
+    font-size: 12px;
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="topbar">
+    <span>SIDE BY SIDE — STYLE PRACTICE</span>
+    <span>UNIT 12 · PAGE 87</span>
+  </div>
+
+  <div class="lesson-title">
+    <h1>Relative Clauses</h1>
+    <p>Who, That, Which — Identifying People and Things</p>
+  </div>
+
+  <!-- GRAMMAR BOX -->
+  <div class="grammar-box">
+    <div class="head">GRAMMAR FOCUS</div>
+    <div class="body">
+      <div class="gram-row">
+        <span class="label">PEOPLE</span>
+        <span>Do you know the man <span class="pronoun">who</span> <span class="clause">lives next door</span>?</span>
+      </div>
+      <div class="gram-row">
+        <span class="label">PEOPLE</span>
+        <span>Do you know the man <span class="pronoun">that</span> <span class="clause">lives next door</span>?</span>
+      </div>
+      <div class="gram-row">
+        <span class="label">THINGS</span>
+        <span>I lost the book <span class="pronoun">that</span> <span class="clause">I borrowed from you</span>.</span>
+      </div>
+      <div class="gram-row">
+        <span class="label">THINGS</span>
+        <span>I lost the book <span class="pronoun">which</span> <span class="clause">I borrowed from you</span>.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODEL CONVERSATION -->
+  <div class="section-title"><span class="section-num">1</span>Model Conversation</div>
+  <div class="dialogue">
+    <div class="char-row">
+      <div class="avatar">BOB</div>
+      <div class="bubble">
+        <div class="name">Bob</div>
+        Do you know the woman <b>who</b> is talking to Mr. Lee?
+      </div>
+    </div>
+    <div class="char-row right">
+      <div class="avatar">SUE</div>
+      <div class="bubble">
+        <div class="name">Sue</div>
+        Yes, I do. She's the new accountant <b>who</b> just started yesterday.
+      </div>
+    </div>
+    <div class="char-row">
+      <div class="avatar">BOB</div>
+      <div class="bubble">
+        <div class="name">Bob</div>
+        Really? I heard she's the person <b>who</b> reorganized the whole filing system.
+      </div>
+    </div>
+    <div class="char-row right">
+      <div class="avatar">SUE</div>
+      <div class="bubble">
+        <div class="name">Sue</div>
+        That's right! She's also the one <b>who</b> trained all the new interns.
+      </div>
+    </div>
+  </div>
+
+  <!-- PRACTICE 1 -->
+  <div class="section-title"><span class="section-num">2</span>Practice: Talking About People</div>
+  <div class="practice-grid">
+    <div class="item"><span class="num">1.</span> Do you know the man <span class="blank"></span> <span class="picture-cue">📷 fixed our roof</span>?</div>
+    <div class="item"><span class="num">2.</span> She's the teacher <span class="blank"></span> <span class="picture-cue">📷 taught me English</span>.</div>
+    <div class="item"><span class="num">3.</span> He's the neighbor <span class="blank"></span> <span class="picture-cue">📷 always feeds the cats</span>.</div>
+    <div class="item"><span class="num">4.</span> They're the students <span class="blank"></span> <span class="picture-cue">📷 won the science fair</span>.</div>
+    <div class="item"><span class="num">5.</span> She's the doctor <span class="blank"></span> <span class="picture-cue">📷 treated my father</span>.</div>
+    <div class="item"><span class="num">6.</span> He's the man <span class="blank"></span> <span class="picture-cue">📷 lost his wallet</span>.</div>
+  </div>
+
+  <!-- PRACTICE 2 -->
+  <div class="section-title"><span class="section-num">3</span>Practice: Talking About Things</div>
+  <div class="practice-grid">
+    <div class="item"><span class="num">1.</span> Where's the umbrella <span class="blank"></span> <span class="picture-cue">📷 I left here</span>?</div>
+    <div class="item"><span class="num">2.</span> I returned the sweater <span class="blank"></span> <span class="picture-cue">📷 didn't fit</span>.</div>
+    <div class="item"><span class="num">3.</span> This is the recipe <span class="blank"></span> <span class="picture-cue">📷 won first prize</span>.</div>
+    <div class="item"><span class="num">4.</span> I fixed the bike <span class="blank"></span> <span class="picture-cue">📷 was broken</span>.</div>
+    <div class="item"><span class="num">5.</span> That's the song <span class="blank"></span> <span class="picture-cue">📷 played at our wedding</span>.</div>
+    <div class="item"><span class="num">6.</span> She found the keys <span class="blank"></span> <span class="picture-cue">📷 went missing</span>.</div>
+  </div>
+
+  <!-- FREE PRACTICE -->
+  <div class="section-title"><span class="section-num">4</span>Let's Talk!</div>
+  <div class="free-practice">
+    Work with a partner. Ask and answer questions using relative clauses.
+    <ul>
+      <li>Tell me about a person <b>who</b> inspires you.</li>
+      <li>Describe something <b>that</b> you bought recently and like.</li>
+      <li>Talk about a movie <b>which</b> made you cry or laugh.</li>
+      <li>Describe a place <b>that</b> changed the way you think.</li>
+    </ul>
+  </div>
+
+  <div class="footer-note">Designed in the style of the Side by Side textbook series · For classroom use</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sounding Natural: Collocations &amp; Tag Questions Quiz</title>
+<style>
+  :root {
+    --teal: #028090;
+    --seafoam: #00A896;
+    --mint: #02C39A;
+    --deepteal: #013A40;
+    --ink: #1B2B2E;
+    --muted: #5B7472;
+    --cardbg: #F0F9F8;
+    --wrong: #B3261E;
+    --wrongbg: #FDECEA;
+    --rightbg: #E8F7F1;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: Calibri, Arial, sans-serif;
+    background: #FFFFFF;
+    color: var(--ink);
+  }
+  .hero {
+    background: var(--deepteal);
+    padding: 40px 24px 34px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 220px; height: 220px;
+    background: rgba(2,192,154,0.18);
+    border-radius: 50%;
+  }
+  .kicker {
+    color: var(--mint);
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  h1 {
+    font-family: Cambria, Georgia, serif;
+    color: #fff;
+    font-size: 32px;
+    margin: 8px 0 4px;
+  }
+  .sub {
+    color: #CFEFEC;
+    font-style: italic;
+    font-size: 16px;
+    margin: 0;
+  }
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 28px 20px 60px;
+  }
+  .progress-bar {
+    height: 8px;
+    background: #E3F0EE;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 6px;
+  }
+  .progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--seafoam);
+    transition: width 0.25s ease;
+  }
+  .progress-label {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+  .section-title {
+    color: var(--teal);
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin: 34px 0 10px;
+  }
+  .q-card {
+    background: var(--cardbg);
+    border-radius: 12px;
+    padding: 20px 22px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  }
+  .q-num {
+    display: inline-block;
+    background: var(--teal);
+    color: #fff;
+    font-size: 13px;
+    font-weight: bold;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 26px;
+    margin-right: 10px;
+  }
+  .q-text {
+    font-size: 16.5px;
+    font-weight: 600;
+    color: var(--ink);
+    display: inline;
+  }
+  .options {
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    border: 1.5px solid #DCEDEA;
+    border-radius: 8px;
+    padding: 10px 14px;
+    cursor: pointer;
+    font-size: 15.5px;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .option:hover { border-color: var(--seafoam); }
+  .option input { accent-color: var(--teal); width: 16px; height: 16px; flex-shrink: 0; }
+  .option.selected { border-color: var(--teal); background: #E6F4F3; }
+  .option.correct { border-color: var(--mint); background: var(--rightbg); }
+  .option.incorrect { border-color: var(--wrong); background: var(--wrongbg); }
+  .explanation {
+    display: none;
+    margin-top: 12px;
+    font-size: 14px;
+    color: var(--muted);
+    background: #fff;
+    border-left: 3px solid var(--seafoam);
+    padding: 10px 14px;
+    border-radius: 6px;
+  }
+  .explanation.show { display: block; }
+  .explanation b { color: var(--deepteal); }
+  .submit-row {
+    text-align: center;
+    margin-top: 30px;
+  }
+  button.primary {
+    background: var(--teal);
+    color: #fff;
+    border: none;
+    padding: 14px 36px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  button.primary:hover { background: var(--deepteal); }
+  button.secondary {
+    background: #fff;
+    color: var(--teal);
+    border: 1.5px solid var(--teal);
+    padding: 12px 30px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-top: 12px;
+  }
+  #results {
+    display: none;
+    text-align: center;
+    padding: 30px 20px;
+    background: var(--cardbg);
+    border-radius: 14px;
+    margin-bottom: 30px;
+  }
+  #results.show { display: block; }
+  .score-num {
+    font-family: Cambria, Georgia, serif;
+    font-size: 52px;
+    font-weight: bold;
+    color: var(--deepteal);
+  }
+  .score-label { color: var(--muted); font-size: 15px; margin-top: 4px; }
+  .missing-note {
+    color: var(--wrong);
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
+    display: none;
+  }
+  .missing-note.show { display: block; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="kicker">APPROACH INTERNATIONAL STUDENT CENTER &middot; PROFICIENT LEVEL</div>
+  <h1>Sounding Natural: Check Your Fluency</h1>
+  <p class="sub">A 20-question review of collocations &amp; tag questions</p>
+</div>
+
+<div class="wrap">
+
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-label" id="progressLabel">0 of 20 answered</div>
+
+  <div id="results">
+    <div class="score-num" id="scoreNum">0 / 20</div>
+    <div class="score-label" id="scoreLabel">Keep practicing!</div>
+  </div>
+
+  <form id="quizForm"></form>
+
+  <div class="submit-row">
+    <button type="button" class="primary" id="submitBtn">Check My Answers</button>
+    <div class="missing-note" id="missingNote">Please answer every question before submitting.</div>
+    <br>
+    <button type="button" class="secondary" id="resetBtn" style="display:none;">Try Again</button>
+  </div>
+
+</div>
+
+<script>
+const questions = [
+  // ---------------- COLLOCATIONS ----------------
+  {
+    section: "Collocations \u00b7 Verb + Noun",
+    text: "She ____ a wise decision when she turned down the offer.",
+    options: ["did", "made", "took", "had"],
+    correct: 1,
+    explain: "<b>make a decision</b> is the standard collocation \u2014 not \u2018do,\u2019 \u2018take,\u2019 or \u2018have\u2019 a decision."
+  },
+  {
+    section: "Collocations \u00b7 Verb + Noun",
+    text: "He ____ a huge risk investing his entire savings in one stock.",
+    options: ["made", "took", "did", "had"],
+    correct: 1,
+    explain: "<b>take a risk</b> \u2014 a classic verb+noun collocation. \u2018Make a risk\u2019 is a common L1-interference error."
+  },
+  {
+    section: "Collocations \u00b7 Verb + Noun",
+    text: "After hours of negotiation, both sides finally ____ an agreement.",
+    options: ["made", "did", "reached", "took"],
+    correct: 2,
+    explain: "<b>reach an agreement</b> is the natural collocation, not \u2018make\u2019 or \u2018get\u2019 an agreement."
+  },
+  {
+    section: "Collocations \u00b7 Adjective + Noun",
+    text: "The two candidates had a ____ debate about tax policy.",
+    options: ["hot", "heavy", "heated", "warm"],
+    correct: 2,
+    explain: "<b>a heated debate</b> is the fixed adjective+noun collocation for a passionate argument."
+  },
+  {
+    section: "Collocations \u00b7 Adverb + Adjective",
+    text: "She was ____ concerned when she heard the news.",
+    options: ["deeply", "hardly", "strongly", "highly"],
+    correct: 0,
+    explain: "<b>deeply concerned</b> is the natural adverb+adjective pairing for this feeling."
+  },
+  {
+    section: "Collocations \u00b7 Noun + Noun",
+    text: "He has a great ____ of humor \u2014 he can make anyone laugh.",
+    options: ["feeling", "spirit", "sense", "mind"],
+    correct: 2,
+    explain: "<b>a sense of humor</b> is a fixed noun+noun collocation."
+  },
+  {
+    section: "Collocations \u00b7 Fixed Binomials",
+    text: "Learning a language is often a process of trial and ____.",
+    options: ["fault", "mistake", "error", "wrong"],
+    correct: 2,
+    explain: "<b>trial and error</b> is a fixed binomial \u2014 the order and wording never change."
+  },
+  {
+    section: "Collocations \u00b7 Spot the Clash",
+    text: "Which phrase is NOT a natural English collocation?",
+    options: ["make a mistake", "do a mistake", "take a photo", "reach an agreement"],
+    correct: 1,
+    explain: "<b>\u2018do a mistake\u2019</b> is a common L1-interference error \u2014 English speakers say \u2018make a mistake.\u2019"
+  },
+  {
+    section: "Collocations \u00b7 Register",
+    text: "Which phrase fits a formal research paper better?",
+    options: ["look into the issue", "conduct research into the issue"],
+    correct: 1,
+    explain: "<b>conduct research</b> is the academic-register collocation; \u2018look into\u2019 is more conversational."
+  },
+  {
+    section: "Collocations \u00b7 Register",
+    text: "Which phrase fits casual small talk better?",
+    options: ["see eye to eye", "reach a consensus"],
+    correct: 0,
+    explain: "<b>see eye to eye</b> is conversational; \u2018reach a consensus\u2019 is the academic/professional equivalent."
+  },
+  // ---------------- TAG QUESTIONS ----------------
+  {
+    section: "Tag Questions \u00b7 Basic Form",
+    text: "She's coming to the party, ____?",
+    options: ["isn't she", "doesn't she", "is she", "won't she"],
+    correct: 0,
+    explain: "Positive statement \u2192 negative tag: \u2018she\u2019s\u2019 (is) \u2192 <b>isn\u2019t she?</b>"
+  },
+  {
+    section: "Tag Questions \u00b7 Basic Form",
+    text: "They didn't call you yesterday, ____?",
+    options: ["did they", "didn't they", "do they", "were they"],
+    correct: 0,
+    explain: "Negative statement \u2192 positive tag: <b>did they?</b>"
+  },
+  {
+    section: "Tag Questions \u00b7 Tricky Case: I am",
+    text: "I'm invited to the meeting too, ____?",
+    options: ["amn't I", "aren't I", "am I not", "isn't I"],
+    correct: 1,
+    explain: "The irregular but standard form is <b>aren\u2019t I?</b> \u2014 not \u2018amn\u2019t\u2019 or \u2018am I not\u2019 in speech."
+  },
+  {
+    section: "Tag Questions \u00b7 Tricky Case: Imperatives",
+    text: "Close the door on your way out, ____?",
+    options: ["do you", "shall you", "will you", "don't you"],
+    correct: 2,
+    explain: "Imperatives take <b>will you?</b> (or \u2018won\u2019t you?\u2019 for a friendlier request)."
+  },
+  {
+    section: "Tag Questions \u00b7 Tricky Case: Let's",
+    text: "Let's take a short break, ____?",
+    options: ["shall we", "will we", "don't we", "aren't we"],
+    correct: 0,
+    explain: "\u2018Let\u2019s\u2026\u2019 always takes <b>shall we?</b>"
+  },
+  {
+    section: "Tag Questions \u00b7 Tricky Case: There is/are",
+    text: "There isn't any coffee left, ____?",
+    options: ["isn't there", "is there", "aren't there", "was there"],
+    correct: 1,
+    explain: "Negative statement with \u2018there isn\u2019t\u2019 \u2192 positive tag: <b>is there?</b>"
+  },
+  {
+    section: "Tag Questions \u00b7 Tricky Case: Negative Adverbs",
+    text: "He rarely arrives on time, ____?",
+    options: ["doesn't he", "does he", "isn't he", "won't he"],
+    correct: 1,
+    explain: "\u2018Rarely\u2019 functions like a negative, so the statement is treated as negative \u2192 positive tag: <b>does he?</b>"
+  },
+  {
+    section: "Tag Questions \u00b7 Function",
+    text: "\u201cThat was a fantastic talk, wasn't it?\u201d \u2014 what is this tag question mainly doing?",
+    options: ["Checking an uncertain fact", "Inviting agreement", "Expressing surprise", "Asking for real information"],
+    correct: 1,
+    explain: "Said with falling intonation, this tag <b>invites agreement</b> \u2014 the speaker is already fairly sure."
+  },
+  {
+    section: "Tag Questions \u00b7 Function",
+    text: "\u201cYou didn't eat my sandwich, did you?\u201d \u2014 what is this tag question mainly doing?",
+    options: ["Making small talk", "Expressing surprise or mild accusation", "Inviting agreement", "Checking grammar"],
+    correct: 1,
+    explain: "This tag expresses <b>surprise / mild accusation</b> \u2014 the speaker suspects something happened and isn\u2019t pleased."
+  },
+  {
+    section: "Tag Questions \u00b7 Intonation",
+    text: "If a tag question is said with RISING intonation, the speaker is most likely\u2026",
+    options: ["Fairly sure and just being social", "Genuinely unsure and asking for real information"],
+    correct: 1,
+    explain: "Rising intonation signals a <b>genuine question</b> \u2014 the speaker really doesn\u2019t know the answer."
+  },
+];
+
+const form = document.getElementById('quizForm');
+const progressFill = document.getElementById('progressFill');
+const progressLabel = document.getElementById('progressLabel');
+const submitBtn = document.getElementById('submitBtn');
+const resetBtn = document.getElementById('resetBtn');
+const missingNote = document.getElementById('missingNote');
+const results = document.getElementById('results');
+const scoreNum = document.getElementById('scoreNum');
+const scoreLabel = document.getElementById('scoreLabel');
+
+let currentSection = "";
+questions.forEach((q, i) => {
+  if (q.section !== currentSection) {
+    currentSection = q.section;
+    const h = document.createElement('div');
+    h.className = 'section-title';
+    h.textContent = currentSection;
+    form.appendChild(h);
+  }
+  const card = document.createElement('div');
+  card.className = 'q-card';
+  card.id = 'card-' + i;
+
+  const qText = document.createElement('div');
+  qText.innerHTML = '<span class="q-num">' + (i + 1) + '</span><span class="q-text">' + q.text + '</span>';
+  card.appendChild(qText);
+
+  const opts = document.createElement('div');
+  opts.className = 'options';
+  q.options.forEach((opt, j) => {
+    const label = document.createElement('label');
+    label.className = 'option';
+    label.id = 'opt-' + i + '-' + j;
+    label.innerHTML = '<input type="radio" name="q' + i + '" value="' + j + '"> <span>' + opt + '</span>';
+    label.querySelector('input').addEventListener('change', () => updateProgress());
+    opts.appendChild(label);
+  });
+  card.appendChild(opts);
+
+  const exp = document.createElement('div');
+  exp.className = 'explanation';
+  exp.id = 'exp-' + i;
+  exp.innerHTML = q.explain;
+  card.appendChild(exp);
+
+  form.appendChild(card);
+});
+
+function updateProgress() {
+  let answered = 0;
+  questions.forEach((q, i) => {
+    if (form.querySelector('input[name="q' + i + '"]:checked')) answered++;
+  });
+  const pct = Math.round((answered / questions.length) * 100);
+  progressFill.style.width = pct + '%';
+  progressLabel.textContent = answered + ' of ' + questions.length + ' answered';
+  return answered;
+}
+
+submitBtn.addEventListener('click', () => {
+  const answered = updateProgress();
+  if (answered < questions.length) {
+    missingNote.classList.add('show');
+    return;
+  }
+  missingNote.classList.remove('show');
+
+  let score = 0;
+  questions.forEach((q, i) => {
+    const checked = form.querySelector('input[name="q' + i + '"]:checked');
+    const chosen = parseInt(checked.value, 10);
+    const isCorrect = chosen === q.correct;
+    if (isCorrect) score++;
+
+    q.options.forEach((opt, j) => {
+      const label = document.getElementById('opt-' + i + '-' + j);
+      label.querySelector('input').disabled = true;
+      if (j === q.correct) {
+        label.classList.add('correct');
+      } else if (j === chosen && !isCorrect) {
+        label.classList.add('incorrect');
+      }
+    });
+    document.getElementById('exp-' + i).classList.add('show');
+  });
+
+  scoreNum.textContent = score + ' / ' + questions.length;
+  let msg;
+  if (score === questions.length) msg = "Perfect score \u2014 you sound like a native speaker!";
+  else if (score >= questions.length * 0.8) msg = "Excellent work \u2014 very close to fluent.";
+  else if (score >= questions.length * 0.6) msg = "Good progress \u2014 review the explanations below.";
+  else msg = "Keep practicing \u2014 review the explanations below and try again.";
+  scoreLabel.textContent = msg;
+  results.classList.add('show');
+  results.scrollIntoView({ behavior: 'smooth' });
+
+  submitBtn.style.display = 'none';
+  resetBtn.style.display = 'inline-block';
+});
+
+resetBtn.addEventListener('click', () => location.reload());
+</script>
+
+</body>
+</html>
